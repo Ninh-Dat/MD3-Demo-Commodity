@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComodityController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('welcome');
+});
+Route::prefix("products")->group(function(){
+   Route::get("/index",[ComodityController::class,"index"])->name("products.index");
+   Route::get('/{$id}/index',[ComodityController::class,"delete"])->name("products.delete");
+   Route::get("/create",[ComodityController::class,"create"])->name("products.create");
+   Route::get('/{$id}/show',[ComodityController::class,"show"])->name("products.show");
+   Route::get("/index",[ComodityController::class,"index"])->name("products.index");
+   Route::get("/index",[ComodityController::class,"index"])->name("products.index");
 });
