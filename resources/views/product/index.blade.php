@@ -50,6 +50,7 @@
     </tbody>
 </table>
 
+<a href="{{route('logout')}}" type="button" class="btn btn-info mb-4 mt-5 ml-4"> Logout</a>
 
 
 

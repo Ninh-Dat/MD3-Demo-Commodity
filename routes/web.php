@@ -48,6 +48,8 @@ Route::get("/login",[AuthController::class,'showFormLogin'])->name("showFormLogi
 Route::post("/login",[AuthController::class,'login'])->name("login");
 
 
+Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+
 ?>
 
 
