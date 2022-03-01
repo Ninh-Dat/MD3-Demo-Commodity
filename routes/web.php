@@ -36,7 +36,8 @@ Route::prefix("products")->group(function(){
     Route::get('/{id}/show',[ComodityController::class,"show"])->name("products.show");
     Route::get("/create",[ComodityController::class,"create"])->name("products.create");
     Route::post("/create",[ComodityController::class,"store"])->name("products.store");
-
+    Route::post("/{id}/update",[ComodityController::class,"update"])->name("products.update");
+    Route::get("/{id}/update",[ComodityController::class,"edit"])->name("products.edit");
 });
 ?>
 

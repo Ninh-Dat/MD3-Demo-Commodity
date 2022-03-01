@@ -35,13 +35,16 @@ class ComodityController extends Controller
 
     public function edit($id)
     {
-        //
+        $product = DB::table("products")->where("id", $id)->first();
+        return view("product.update", compact(['id','product']));
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+        $data =$request->only('name','sectors','price','amount','datecreated','description');
+        $update = DB::table('products')->where("id",$id)->update($data);
+        return redirect()->route('products.index');
     }
 
     public function destroy($id)

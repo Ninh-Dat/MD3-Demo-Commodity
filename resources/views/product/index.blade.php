@@ -43,7 +43,7 @@
         <td>
             <a href="{{route('products.show',$product->id)}}" type="button" class="btn btn-info">Detail</a>
             <a onclick="return confirm('Bạn có muốn xóa bài viết không ')" href="{{route('products.delete', $product->id)}}" type="button" class="btn btn-danger">Delete</a>
-{{--            <a href="{{route('products.update', $product->id)}}" type="button" class="btn btn-success">Update</a>--}}
+            <a href="{{route('products.edit',$product->id)}}" type="button" class="btn btn-success">Update</a>
         </td>
     </tr>
     @endforeach
