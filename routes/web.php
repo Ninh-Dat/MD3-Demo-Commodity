@@ -7,12 +7,13 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">;
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 
 </head>
 <body>
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ComodityController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,14 @@ Route::prefix("products")->group(function(){
     Route::post("/{id}/update",[ComodityController::class,"update"])->name("products.update");
     Route::get("/{id}/update",[ComodityController::class,"edit"])->name("products.edit");
 });
+
+Route::get("/register",[AuthController::class,'showForm'])->name("showForm");
+Route::post("/register",[AuthController::class,'register'])->name("register")->middleware('checkRegister');
+
+Route::get("/login",[AuthController::class,'showFormLogin'])->name("showFormLogin");
+Route::post("/login",[AuthController::class,'login'])->name("login");
+
+
 ?>
 
 
