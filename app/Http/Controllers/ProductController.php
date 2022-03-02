@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ComodityController extends Controller
+class ProductController extends Controller
 {
+public function home(){
+    return view('welcome');
+}
 
     public function index()
     {

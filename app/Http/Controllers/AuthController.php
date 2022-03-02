@@ -35,7 +35,7 @@ class AuthController extends Controller
         //dùng attemp để check user có hay ko
         if (Auth::attempt($user)) {
 //            dd('đăng nhập thành công');
-            return redirect()->route('products.index');
+            return redirect()->route('welcome');
         }else{
             Session::flash('msg','Tài khoản không đúng');
 //            dd('đăng nhập ko thành công');

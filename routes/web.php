@@ -14,7 +14,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ComodityController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,18 +28,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', function () {
-    return view('welcome');
+
+Route::middleware('checkAuth')->group(function (){
+
+    Route::get('/home',[ProductController::class,'home'])->name('welcome');
+
+    Route::prefix("products")->group(function(){
+        Route::get("/index",[ProductController::class,"index"])->name("products.index");
+        Route::get('/{id}/destroy',[ProductController::class,"destroy"])->name("products.delete");
+        Route::get('/{id}/show',[ProductController::class,"show"])->name("products.show");
+        Route::get("/create",[ProductController::class,"create"])->name("products.create");
+        Route::post("/create",[ProductController::class,"store"])->name("products.store");
+        Route::post("/{id}/update",[ProductController::class,"update"])->name("products.update");
+        Route::get("/{id}/update",[ProductController::class,"edit"])->name("products.edit");
+    });
 });
-Route::prefix("products")->group(function(){
-    Route::get("/index",[ComodityController::class,"index"])->name("products.index");
-    Route::get('/{id}/destroy',[ComodityController::class,"destroy"])->name("products.delete");
-    Route::get('/{id}/show',[ComodityController::class,"show"])->name("products.show");
-    Route::get("/create",[ComodityController::class,"create"])->name("products.create");
-    Route::post("/create",[ComodityController::class,"store"])->name("products.store");
-    Route::post("/{id}/update",[ComodityController::class,"update"])->name("products.update");
-    Route::get("/{id}/update",[ComodityController::class,"edit"])->name("products.edit");
-});
+
 
 Route::get("/register",[AuthController::class,'showForm'])->name("showForm");
 Route::post("/register",[AuthController::class,'register'])->name("register")->middleware('checkRegister');
